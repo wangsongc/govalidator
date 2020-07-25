@@ -1,7 +1,6 @@
 language: go
 go:
   - tip
-before_install:
-  - go get github.com/mattn/goveralls
 script:
-  - $GOPATH/bin/goveralls -service=travis-ci
+  - go test -coverpkg=./... -coverprofile=coverage.info -timeout=5s
+  - bash <(curl -s https://codecov.io/bash)
